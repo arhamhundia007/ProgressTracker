@@ -6,7 +6,7 @@ public class Display {
     Calender calender;
 
     public Display(Calender c){
-        scanner = new Scanner("System.in");
+        scanner = new Scanner(System.in);
         this.calender = c;
     }
 
@@ -45,16 +45,19 @@ public class Display {
             System.out.println("Please type an acceptable value!(from 1 to 6)");
             choose = scanner.nextInt();
         }
+        System.out.println();
         if (choose == 1){
             Tracker t = new Tracker(calender);
             double avg = t.trackList(calender.names);
             System.out.printf("You have completed %.2f % of the tasks you have enlisted.", avg);
         } else if (choose == 2){
+
             for (int i = 0; i < calender.task.length; i++) {
-                System.out.printf(" %d: ", i);
+                System.out.printf("%d: ", i + 1);
                 for (int j = 0; j < calender.task[i].size(); j++) {
-                    System.out.printf(" %s |", calender.task[i].get(j));
+                    System.out.printf("%s |", calender.task[i].get(j).getName());
                 }
+                System.out.println();
             }
         } else if (choose == 3){
             for (int i = 0; i < calender.names.size(); i++) {
@@ -89,10 +92,15 @@ public class Display {
             System.out.print("1) Task name\n2) Task repetition\n3) Calender type\n4) Task status\n5) Task weight-age\n6) Exit\n");
             int choice;
             choice = scanner.nextInt();
+
             while (choice < 1 || choice > 6) {
                 System.out.println("Please type an acceptable value!(from 1 to 6)");
                 choice = scanner.nextInt();
+
             }
+
+            scanner.nextLine();
+
             System.out.print("Enter the name of the task you want to edit: ");
             String name = scanner.nextLine();
             if (choice == 1) {
@@ -136,7 +144,7 @@ public class Display {
                 }
             } else if (choice == 4) {
                 Task t = calender.names.get(calender.isNameFound(name));
-                calender.names.get(calender.isNameFound(name)).setStatus();
+
                 for (int i = 0; i < t.indices.size(); i++) {
                     for (int j = 0; j < calender.task[i].size(); j++) {
                         String naam = calender.task[i].get(j).getName();
@@ -168,7 +176,9 @@ public class Display {
             while (choice < 1 || choice > 3) {
                 System.out.println("Please type an acceptable value!(from 1 to 3)");
                 choice = scanner.nextInt();
+
             }
+            scanner.nextLine();
             System.out.print("Enter the name of the task to be removed: ");
             String name = scanner.nextLine();
             Task t = calender.names.get(calender.isNameFound(name));
@@ -184,24 +194,27 @@ public class Display {
 
     //Have to complete this
     public void addMenu() {
-        System.out.println("Add");
-        System.out.println("\n1) Add task\n2) Exit");
+        System.out.println("\nAdd");
+        System.out.println("1) Add task\n2) Exit");
         int choose = scanner.nextInt();
         while (choose < 1 || choose > 2) {
             System.out.println("Please type an acceptable value!(from 1 to 2)");
             choose = scanner.nextInt();
         }
+        scanner.nextLine();
         if (choose == 1) {
             System.out.print("Enter name of the task: ");
             String name = scanner.nextLine();
             System.out.print("Enter number of times you wanna repeat the task: ");
             int multiple = scanner.nextInt();
+            scanner.nextLine();
             System.out.print("Enter daily/weekly/monthly: ");
             String dwm = scanner.nextLine();
             System.out.print("Enter weight of the task: ");
             int weight = scanner.nextInt();
+            scanner.nextLine();
 
-            Task toAdd = new Task(name, multiple, dwm, false, weight);
+            Task toAdd = new Task(name, multiple, dwm, weight);
             calender.addTask(toAdd);
         } if (choose == 2){
             option = 4;

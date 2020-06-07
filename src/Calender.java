@@ -69,6 +69,10 @@ public class Calender {
                 }
             }
         }
+
+        for (int i = 0; i < task.length; i++) {
+            task[i] = new ArrayList<Task>();
+        }
     }
 
     public void addTask(Task toAdd){
@@ -77,7 +81,7 @@ public class Calender {
         }
         int num = task.length - 1;
         for (int i = 0; i < toAdd.getMultipleTimes(); i++) {
-            System.out.printf("Type a number corresponding from 0 to %d corresponding to %s where you would like to add your task: ", num, toAdd.getDwm());
+            System.out.printf("Type a number corresponding from 0(First instance) to %d(Last instance) corresponding to %s where you would like to add your task: ", num, toAdd.getDwm());
             int index = s.nextInt();
             task[index].add(toAdd);
             toAdd.indices.add(index);
@@ -96,7 +100,7 @@ public class Calender {
         }
 
         int num = task.length - 1;
-        System.out.printf("Type a number corresponding from 0 to %d corresponding to %s from where you want to delete the task: ", num, toRemove.getDwm());
+        System.out.printf("Type a number corresponding from 0(First instance) to %d(Last instance) corresponding to %s from where you want to delete the task: ", num, toRemove.getDwm());
         int index = s.nextInt();
 
         int indicesIndex = isFound(toRemove, index);

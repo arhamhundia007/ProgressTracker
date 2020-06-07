@@ -10,11 +10,11 @@ public class Task {
 
 
 
-    public Task(String name, int times, String dayWeekMonth, boolean status, int weight){
+    public Task(String name, int times, String dayWeekMonth, int weight){
         this.name = name;
         this.multipleTimes = times;
         this.dwm = dayWeekMonth;
-        this.status = status;
+        this.status = false;
         this.indices = new ArrayList<>();
         this.weightage = weight;
     }
